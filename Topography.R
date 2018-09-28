@@ -1,15 +1,14 @@
-library(openxlsx)
-library(magrittr)
 library(dplyr)
-library(tibble)
 library(sf)
 
+# Loading topography data frame ----
 
 topoESQ_comp <- read.csv("Files/Topo_estacas_E.csv") %>% 
-  select(-1)
+  select(-1) %>% 
+  rename(height = Altura,
+         side = Lado)
 
-
-# Joins pela topografia ----
+# Joins by topography ----
 
 Estacas_1m <- as_tibble(st_read("Files/ESTACAS_1m_EFC_0-871_Policonic_SIRGAS.shp"))
 
